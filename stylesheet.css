@@ -38,11 +38,11 @@ html {
     border-radius:100%;
 }
 
-ul {
+#nav ul {
     font-size: 24px;
 }
 
-li {
+#nav li {
     display: inline;
     border: 2px solid #000000;
     color: black;
@@ -50,13 +50,13 @@ li {
     border-radius: 5px 5px;
     background-color: purple;
 }
-ul.l {
+#nav ul.l {
     list-style-type: none;
     position: fixed;
     margin-top:15px;
     margin-left:-15px;
 }
-ul.r {
+#nav ul.r {
     list-style-type: none;
     position: fixed;
     margin-top:-90px;
