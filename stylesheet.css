@@ -62,3 +62,21 @@ html {
     margin-top:-90px;
     margin-left:215px;
 }
+
+#languages {
+    margin-top:10px;
+    padding:5px;
+    margin-left:10px;
+}
+
+#languages li{
+    list-style-type: none;
+    border:2px solid rgb(0,0,0);
+    padding:2px;
+    border-radius:5%;
+    background-color:rgba(125,0,0,10);
+}
+
+.pad {
+    margin-top:100px;
+}
