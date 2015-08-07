@@ -1,0 +1,24 @@
+#center {
+    border-radius:100%;
+    width:10em;
+    height:10em;
+    display:block;
+    left:50%;
+    top:50%;
+    margin-left:-5em;
+    margin-top:-5em;
+    position: fixed;
+}
+
+div {
+    border-radius:100%;
+    width:5em;
+    height:5em;
+    display:block;
+    left:50%;
+    top:25%;
+    margin-left:-2.5em;
+    margin-top:-2.5em;
+    position: fixed;
+    background-color: black;
+}
