@@ -54,11 +54,11 @@ var y=0;
 
 function init() {
 
-    obj[number] = new pinWheel(x,y,1,1,0,Math.floor(Math.random()*255),Math.floor(Math.random()*255),Math.floor(Math.random()*255),null,1);
+    obj[number] = new pinWheel(x,y,10,10,0,Math.floor(Math.random()*255),Math.floor(Math.random()*255),Math.floor(Math.random()*255),null,1);
     obj[number].pushElement();
     
-    x+=Math.round(Math.random()*2-1);
-    y+=Math.round(Math.random()*2-1);
+    x+=Math.round(Math.random()*10-5);
+    y+=Math.round(Math.random()*10-5);
 }
 
 function postInit() {
