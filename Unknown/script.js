@@ -1,68 +1,34 @@
-function pinWheel(x, y, width, height, circle /*percentage*/,r,g,b, id, index) {
-    this.x = x;
-    this.y = y;
-    this.index = index;
-    this.circle = circle;
+var gl; // A global variable for the WebGL context
+
+function start() {
+    var canvas = document.getElementById("glcanvas");
     
-    this.width = width;
-    this.height = height;
+    gl = initWebGL(canvas);      // Initialize the GL context
     
-    this.color = 'rgb('+r+','+g+','+b+')';
+    // Only continue if WebGL is available and working
     
-    this.id = id;
+    if (gl) {
+        gl.clearColor(0.0, 0.0, 0.0, 1.0);                      // Set clear color to black, fully opaque
+        gl.enable(gl.DEPTH_TEST);                               // Enable depth testing
+        gl.depthFunc(gl.LEQUAL);                                // Near things obscure far things
+        gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);      // Clear the color as well as the depth buffer.
+    }
+}
+
+function initWebGL(canvas) {
+    gl = null;
     
-    this.getY = -y-(height/2);
-    this.getX = x-(width/2);
-    this.getIndex = index;
-    this.getCircle = circle+'%';
+    try {
+        // Try to grab the standard context. If it fails, fallback to experimental.
+        gl = canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
+    }
+    catch(e) {}
     
-    this.getElement = '<div id="'+this.id+'" style="margin-left:'+this.getX+'px'+';margin-top:'+this.getY+'px'+';width:'+this.width+';height:'+this.height+';background-color:'+this.color+';z-index:'+this.getIndex+';left:50%;top:50%;position:fixed;"></div>';
-    
-    this.pushElement = function() {
-        document.getElementById("body").innerHTML+=this.getElement;
+    // If we don't have a GL context, give up now
+    if (!gl) {
+        alert("Unable to initialize WebGL. Your browser may not support it.");
+        gl = null;
     }
     
+    return gl;
 }
-
-var obj = [];
-
-    var number = 1;
-
-function preInit() {
-    
-    var i;
-    
-    /*
-     obj[0] = new pinWheel(0,0,100,100,50,255,0,0,null,1);
-     obj[1] = new pinWheel(0,0,50,50,50,0,255,0,null,2);
-     */
-    
-    
-    for (i=0;i<obj.length;i++) {
-        document.getElementById("body").innerHTML+= obj[i].getElement;
-    }
-    
-    for (i=0;i<obj.length;i++) {
-        
-    }
-    
-    setInterval(init,1);
-}
-
-var x=0;
-var y=0;
-
-function init() {
-
-    obj[number] = new pinWheel(x,y,10,10,0,Math.floor(Math.random()*255),Math.floor(Math.random()*255),Math.floor(Math.random()*255),null,1);
-    obj[number].pushElement();
-    
-    x+=Math.round(Math.random()*10-5);
-    y+=Math.round(Math.random()*10-5);
-}
-
-function postInit() {
-    
-}
-
-window.onload(preInit());
