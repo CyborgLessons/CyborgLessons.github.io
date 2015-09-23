@@ -1,34 +1,60 @@
-var gl; // A global variable for the WebGL context
-
-function start() {
-    var canvas = document.getElementById("glcanvas");
+function pinWheel(x, y, width, height, circle /*percentage*/,r,g,b, id, index) {
+    this.x = x;
+    this.y = y;
+    this.index = index;
+    this.circle = circle;
     
-    gl = initWebGL(canvas);      // Initialize the GL context
+    this.width = width;
+    this.height = height;
     
-    // Only continue if WebGL is available and working
+    this.color = 'rgb('+r+','+g+','+b+')';
     
-    if (gl) {
-        gl.clearColor(0.0, 0.0, 0.0, 1.0);                      // Set clear color to black, fully opaque
-        gl.enable(gl.DEPTH_TEST);                               // Enable depth testing
-        gl.depthFunc(gl.LEQUAL);                                // Near things obscure far things
-        gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);      // Clear the color as well as the depth buffer.
+    this.id = id;
+    
+    this.getY = -(y*(window.innerHeight/2))-(height/2);
+    this.getX = (x*(window.innerWidth/2))-(width/2);
+    this.getIndex = index;
+    this.getCircle = circle+'%';
+    
+    this.getElement = '<div id="'+this.id+'" style="margin-left:'+this.getX+'px'+';margin-top:'+this.getY+'px'+';width:'+this.width+';height:'+this.height+';background-color:'+this.color+';z-index:'+this.getIndex+';left:50%;top:50%;position:fixed;"></div>';
+    
+    this.pushElement = function() {
+        document.getElementById("body").innerHTML+=this.getElement;
     }
+    
 }
 
-function initWebGL(canvas) {
-    gl = null;
+var obj = [];
+
+function preInit() {
     
-    try {
-        // Try to grab the standard context. If it fails, fallback to experimental.
-        gl = canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
+    var i;
+    
+    
+     obj[0] = new pinWheel(0,0,100,10,0,10,10,10,"id",1);
+     
+    
+    
+    for (i=0;i<obj.length;i++) {
+        obj[i].getElement;
     }
-    catch(e) {}
     
-    // If we don't have a GL context, give up now
-    if (!gl) {
-        alert("Unable to initialize WebGL. Your browser may not support it.");
-        gl = null;
+    for (i=0;i<obj.length;i++) {
+        
     }
     
-    return gl;
+    setInterval(init,1);
 }
+
+var x=0;
+var y=0;
+
+function init() {
+
+}
+
+function postInit() {
+    
+}
+
+window.onload(preInit());
