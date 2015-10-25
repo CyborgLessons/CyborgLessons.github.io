@@ -1,0 +1,26 @@
+{
+    "parent": "item/handheld",
+    "textures": {
+        "layer0": "items/diamond_hoe"
+    },
+    "overrides": [
+                  {
+                  "predicate": {
+                  "damage": 0.001281229981
+                  },
+                  "model": "item/blaze_shot"
+                  },
+      {
+        "predicate": {
+          "damage": 0.001921844971
+        },
+        "model": "item/ember"
+      },
+      {
+                  "predicate": {
+                  "damage": 0.00384368994
+                  },
+                  "model": "item/glowTrap"
+                  }
+                  ]
+}
